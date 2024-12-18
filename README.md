@@ -6,8 +6,9 @@
 
 # Info
 
-Running clean_csv.py takes about 4 minutes
-Adding to Postgres DB takes about 3 minutes
+- Running clean_csv.py takes about **4 minutes**
+- Running clean_csv_toXlsx takes about **2 minutes** (Reduced to 1 million rows due to Excel limits)
+- Adding to Postgres DB takes about **3 minutes**
 
 # Setup
 

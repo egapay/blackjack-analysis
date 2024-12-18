@@ -1,7 +1,7 @@
 import pandas as pd
 
 if __name__ == "__main__":
-    df = pd.read_csv("./blackjack_simulator.csv")
+    df = pd.read_csv("./blackjack_simulator.csv", nrows=1000000)
 
     filter_columns = ['dealer_up', 'initial_hand', 'dealer_final', 'dealer_final_value', 'player_final', 'player_final_value', 'actions_taken', 'win']
 
@@ -12,4 +12,4 @@ if __name__ == "__main__":
     filtered_df.loc[:, 'player_final_value'] = filtered_df['player_final_value'].str.replace('[', '').str.replace(']', '')
     filtered_df.loc[:, 'actions_taken'] = filtered_df['actions_taken'].str[1:-1]
 
-    filtered_df.to_csv("./cleaned_blackjack.csv", index=False)
+    filtered_df.to_excel("./cleaned_blackjack.xlsx", index=False)
