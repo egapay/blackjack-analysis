@@ -1,4 +1,5 @@
 blackjack_simulator.csv
+cleaned_blackjack.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
