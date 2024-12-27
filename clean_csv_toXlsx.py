@@ -1,7 +1,9 @@
 import pandas as pd
 import ast
+import ast
 
 if __name__ == "__main__":
+    df = pd.read_csv("./blackjack_simulator.csv", nrows=1000)
     df = pd.read_csv("./blackjack_simulator.csv", nrows=1000)
 
     # filter_columns = ['dealer_up', 'initial_hand', 'dealer_final', 'dealer_final_value', 'player_final', 'player_final_value', 'actions_taken', 'win']
