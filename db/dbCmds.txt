@@ -1,4 +1,0 @@
-\copy round (round_id, win) FROM C:\Users\ethan\repos\blackjack-analysis\db\round.csv WITH (FORMAT csv, HEADER true);
-\copy dealer (round_id, dealer_up, dealer_final, dealer_final_value) FROM C:\Users\ethan\repos\blackjack-analysis\db\dealer.csv WITH (FORMAT csv, HEADER true);
-\copy player (round_id, player_final, player_final_value, actions_taken) FROM C:\Users\ethan\repos\blackjack-analysis\db\player.csv WITH (FORMAT csv, HEADER true);
-\copy player_start (round_id, player_initial) FROM C:\Users\ethan\repos\blackjack-analysis\db\player_start.csv WITH (FORMAT csv, HEADER true);
