@@ -25,160 +25,43 @@
     </header>
     <main>
       <div class="main-container">
-        <h1>Top Steam Game Analysis</h1>
+        <h1>Blackjack Game Analysis</h1>
         <div class="content-section">
           <section>
             <h2>Overview</h2>
-            <p>
-              In this project, I will be doing an analysis of the top 100 Steam
-              games since March 2009. I will giving a detailed report of the
-              entire analysis process starting from data extraction,
-              transformation, and loading, to visualization and analysis.
-            </p>
+            <p>In this project, I will be doing an analysis of</p>
           </section>
           <section>
             <h2>Goal</h2>
-            <p>
-              My goal is to grasp a better understanding of what makes these
-              games top the Steam charts since 2009. I will explore these
-              questions:
-            </p>
+            <p>My goal is to</p>
             <ul>
-              <li>
-                What is the correlation between game price and average playtime?
-              </li>
-              <li>
-                What is the correlation between number of positive reviews and
-                average playtime?
-              </li>
-              <li>
-                What is the correlation between number of positive and total
-                reviews?
-              </li>
-              <li>
-                What is the correlation between total reviews and average
-                playtime?
-              </li>
-              <li>Do paid games have more positive reviews than free games?</li>
-              <li>Are there more paid or free games in the top 100?</li>
+              <li>Question 1</li>
             </ul>
           </section>
           <section>
             <h2>Tech Stack</h2>
             <ul>
-              <li>Python (<i>Extraction and Transformation</i>)</li>
-              <li>Pandas (<i>Loading</i>)</li>
-              <li>Microsoft SQL Server (<i>Store Data</i>)</li>
-              <li>PowerBI (<i>Visualization</i>)</li>
+              <li>Python / Pandas (<i>Data Transformation</i>)</li>
+              <li>
+                <a href="https://dbdiagram.io/">dbdiagram.io</a> (<i
+                  >Database Modeling</i
+                >)
+              </li>
+              <li>Excel (<i>Data Storage</i>)</li>
+              <li>PostgreSQL (<i>Data Storage</i>)</li>
+              <li>PowerBI (<i>Visualization / Data Transformation</i>)</li>
             </ul>
-          </section>
-          <section>
-            <h2>Dashboard</h2>
-            <iframe
-              title="game_analysis_dashboard"
-              class="report report-dashboard"
-              src="https://app.powerbi.com/view?r=eyJrIjoiOThmNjY0MTUtMzQ1Ny00Yzc3LTk4ODUtZTM5YjU2ZjEyYzEzIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9"
-              frameborder="0"
-              allowfullscreen="true"
-            ></iframe>
           </section>
           <section>
             <h2>Extraction</h2>
-            <p>
-              I did research looking for data that was both meaningful and
-              convenient to retrieve. I first searched on Kaggle looking at
-              these two datasets:
-            </p>
-            <ul>
-              <li>
-                <a
-                  target="_blank"
-                  href="https://www.kaggle.com/datasets/fronkongames/steam-games-dataset"
-                  >Dataset 1</a
-                >
-                data seemed to be a strong candidate as there were a lot of
-                different fields to do analysis off of. However, upon further
-                inspection of the data it looked to be incorrect and/or
-                outdated. I decided to look at another dataset I had more
-                confidence in.
-              </li>
-              <li>
-                <a
-                  target="_blank"
-                  href="https://www.kaggle.com/datasets/nikdavis/steam-store-games/data"
-                  >Dataset 2</a
-                >
-                also seemed promising but looking at the data, it was outdated
-                about 5 years.
-              </li>
-            </ul>
-            <p>
-              With no other publicly and readily available datasets to choose
-              from, I decided I had to create my own. I looked at various
-              websites that holds information about Steam's games. These
-              included SteamDB, Steam's Official API, and Steam Spy.
-            </p>
-            <ul>
-              <li>
-                <a href="https://steamdb.info/"><strong>SteamDB</strong></a> is
-                a third party website that collects data from Steam and allows
-                you to view more in-depth information such as price changes and
-                app ID. They also provide additional tools such as Steam charts,
-                sales, and account calculator. This seemed like the best way to
-                gather information as I planned on web scraping the info from
-                this website. Unfortunately, web scraping was prohibited from
-                the website, so I had to explore other options.
-              </li>
-              <li>
-                <a href="https://partner.steamgames.com/doc/home"
-                  ><strong>Steam's Official API</strong></a
-                >
-                was another option I considered, grabbing information directly
-                from the source. Using Steam's
-                <a href="https://api.steampowered.com/ISteamApps/GetAppList/v2/"
-                  >API</a
-                >, I grabbed a list of appIDs I would use to gather the
-                information. By making a GET request using the respective appID:
-                <a
-                  href="https://store.steampowered.com/api/appdetails?appids=550"
-                  >https://store.steampowered.com/api/appdetails?appids=550</a
-                >, I could gather a list of each games information and store it.
-                This process seemed to be the best solution, but I came across
-                an issue regarding API rate limiting. Steam only allows about
-                100,000 request a day and about 1 request every 10 seconds.
-                Gathering the data of this list of games would take over a month
-                to complete. Again, the information is there but not readily
-                available for use.
-              </li>
-              <li>
-                <a href="https://steamspy.com/api.php"
-                  ><strong>Steam Spy's API</strong></a
-                >
-                is a similar website to SteamDB where they track Steam game
-                information. This website, however, has a publicly available API
-                which has the all the correct information needed: price, average
-                playtime, reviews, etc. I ended up using this API to extract my
-                data from as it was up-to-date and accurate.
-              </li>
-            </ul>
-            <p>
-              After deciding to go with Steam Spy's API, I moved on to
-              transforming the data.
-            </p>
+            <p></p>
           </section>
           <section>
             <h2>Transformation</h2>
-            <p>
-              I will be using <strong>Python</strong> with
-              <strong>Pandas</strong> to extract and transform the data.
-            </p>
+            <p>I will use ...</p>
 
             <div class="code-explain">
-              <p>
-                Here I only have to make a single request to the API endpoint
-                which will get all the information necessary. Only needing to
-                call once solves our rate limiting issue:
-              </p>
+              <p>Explaining code...</p>
               <pre><code class="python"
                   >
 apiEndpoint = "https://steamspy.com/api.php?request=top100forever"
@@ -186,81 +69,6 @@ response = requests.get(apiEndpoint)
 data = response.json()</code>
               </pre>
             </div>
-            <div class="code-explain">
-              <p>This is an example of the data being sent by the API:</p>
-              <pre><code class="json">
-"730": {
-  "appid": 730,
-  "name": "Counter-Strike: Global Offensive",
-  "developer": "Valve",
-  "publisher": "Valve",
-  "score_rank": "",
-  "positive": 7325394,
-  "negative": 1102354,
-  "userscore": 0,
-  "owners": "100,000,000 .. 200,000,000",
-  "average_forever": 29986,
-  "average_2weeks": 904,
-  "median_forever": 6013,
-  "median_2weeks": 337,
-  "price": "0",
-  "initialprice": "0",
-  "discount": "0",
-  "ccu": 1595114
-},</code>
-              </pre>
-            </div>
-            <div class="code-explain">
-              <p>
-                I proceed to extract the data from this request, only processing
-                the necessary keys I want to do analysis on:
-              </p>
-              <pre><code class="python">
-for appid, appInfo in data.items():
-    dataList.append({
-        "appid":appid,
-        "name":appInfo.get("name"),
-        "positive":appInfo.get("positive"),
-        "positive_percentage": round((appInfo.get("positive") / (appInfo.get("positive") + appInfo.get("negative")) * 100), 2),
-        "negative":appInfo.get("negative"),
-        "negative_percentage": round((appInfo.get("negative") / (appInfo.get("positive") + appInfo.get("negative")) * 100), 2),
-        "total_reviews": appInfo.get("positive") + appInfo.get("negative"),
-        "price":int(appInfo.get("price"))/100,
-        "owners":appInfo.get("owners"),
-        "average_playtime_hours": round((appInfo.get("average_forever") / 60), 0),
-        "median_playtime_hours": round((appInfo.get("median_forever") / 60), 0),
-    })
-df = pd.DataFrame(dataList)</code>
-              </pre>
-            </div>
-          </section>
-          <section>
-            <h2>Loading</h2>
-            <div class="code-explain">
-              <p>
-                I used Pandas to load my data into both a .csv and a Microsoft
-                SQL Server Database.
-              </p>
-              <pre><code class="python">
-engine = sqlalchemy.create_engine(f'mssql+pyodbc://{username}:{password}@{server}/{database}?driver=ODBC+Driver+17+for+SQL+Server')
-          
-df.to_csv('topgames.csv', index=False)
-df.to_sql('game_data', con = engine, if_exists='replace', chunksize=1000)
-            </code>
-              </pre>
-            </div>
-            <div>
-              <p>Below is the loaded in data into topgames.csv:</p>
-              <img src="./media/csv-img.png" alt="image of excel spreadsheet" />
-            </div>
-          </section>
-          <section>
-            <h2>Visualization</h2>
-            <p>
-              I used PowerBI to create my visualization reports. I used this as
-              it has easy integration with MSSQL Server and CSV files. Loading
-              in the data to PowerBI, I imported it from the MSSQL Server.
-            </p>
           </section>
           <section>
             <h2>Analysis</h2>
@@ -270,19 +78,7 @@ df.to_sql('game_data', con = engine, if_exists='replace', chunksize=1000)
             </p>
             <div class="question-section">
               <div>
-                <iframe
-                  title="gameCorrelation"
-                  class="report report-correlation"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiNzQyZDUwOWEtZGQ5My00MmQ1LTgxYWItZDJmYmFhOTNjYzM4IiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
-              </div>
-              <div>
-                <h3>
-                  What is the correlation between game price and average
-                  playtime?
-                </h3>
+                <h3>Question</h3>
                 <iframe
                   title="gameData"
                   width="600"
@@ -291,174 +87,17 @@ df.to_sql('game_data', con = engine, if_exists='replace', chunksize=1000)
                   frameborder="0"
                   allowfullscreen="true"
                 ></iframe>
-                <p>
-                  There is a very weak (0.1 > x > 0.0) correlation between these
-                  two fields. This indicates that price does not have a
-                  determining factor on whether or not a game is played for a
-                  long time. This primarily depends on game genre such as story
-                  games or games that have competitive play. Story games have a
-                  definitive end to them meaning that after players finish the
-                  main story, there is not much more content to spend in the
-                  game, reducing the average playtime compared to games with
-                  competitive play. We can see a couple of these story games at
-                  $60 with Red Dead Redemption 2, Hogwarts Legacy, and Baldur's
-                  Gate 3. Games with competitive play tend to see a greater
-                  playtime due to their returning players continuing to try and
-                  get a better rank. We can see two of these games, Dota 2 and
-                  Counter-Strike: Global Offensive (<i
-                    >now called Counter-Strike 2</i
-                  >) with two of the highest average playtimes. These games have
-                  both competitive play and are free.
-                </p>
-              </div>
-              <div>
-                <h3>
-                  What is the correlation between number of positive reviews and
-                  average playtime?
-                </h3>
-                <iframe
-                  title="gameData"
-                  width="600"
-                  height="373.5"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiYTlmNWE3NjgtZjY3Ni00MzU2LWIzYjQtOWFmMzZjZjhkNjdlIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=3b7ee8900d2dc106ed1c"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
-                <p>
-                  There is a moderate correlation (0.8 > x > 0.5) between these
-                  two fields. Those who played longer or games that have longer
-                  playtimes tend to receive more positive reviews. This
-                  potentially could be because players felt like they got their
-                  money's worth with the purchase of the game and the time spent
-                  playing. The graph above shows most of the data sitting around
-                  the 5 to 300 hour range, with it slightly moving up the more
-                  average hours. We see two outliers again with Dota and
-                  Counter-Strike: Global Offensive as they both exceed the
-                  average range by almost double. Again, with the type of games
-                  they are, they tend to move away from the trend.
-                </p>
-              </div>
-              <div>
-                <h3>
-                  What is the correlation between number of positive and total
-                  reviews?
-                </h3>
-                <iframe
-                  title="gameData"
-                  width="600"
-                  height="373.5"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiYTlmNWE3NjgtZjY3Ni00MzU2LWIzYjQtOWFmMzZjZjhkNjdlIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=58162c7621065c10b10c"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
-                <p>
-                  We can see there is a strong correlation (1 > x > 0.8) between
-                  these two fields. This means the majority of the reviews left
-                  on a top rated game tended to be positive. This shows that
-                  players are willing to give give a game a review if they
-                  enjoyed playing it. This correlation also suggest that the
-                  more reviews these top games have, the more likely the
-                  majority of the reviews will be positive. We can see this
-                  trend in the graph above where there is a direct correlation
-                  between the two.
-                </p>
-              </div>
-              <div>
-                <h3>
-                  What is the correlation between total reviews and average
-                  playtime?
-                </h3>
-                <iframe
-                  title="gameData"
-                  width="600"
-                  height="373.5"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiYTlmNWE3NjgtZjY3Ni00MzU2LWIzYjQtOWFmMzZjZjhkNjdlIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=ace5a83e64a01a3968b4"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
-                <p>
-                  There is a moderate correlation (0.8 > x > 0.5) between these
-                  two fields. Players who have played the game longer will most
-                  likely give a review to the game. This shows the willingness a
-                  player has the more time invested in a game to express their
-                  opinions. We can see an upward trend in the data showing the
-                  more reviews a game has the higher average playtime the player
-                  has.
-                </p>
-              </div>
-              <div>
-                <h3>Are there more paid or free games in the top 100?</h3>
-                <iframe
-                  title="gameData"
-                  width="600"
-                  height="373.5"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiYTlmNWE3NjgtZjY3Ni00MzU2LWIzYjQtOWFmMzZjZjhkNjdlIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=27d4fa2721456057a70d"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
-                <p>
-                  The data shows we have 66 games which are paid and 34 games
-                  which are free.
-                </p>
-              </div>
-              <div>
-                <h3>
-                  Do paid games have more positive reviews than free games?
-                </h3>
-                <iframe
-                  title="gameData"
-                  width="600"
-                  height="373.5"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiYTlmNWE3NjgtZjY3Ni00MzU2LWIzYjQtOWFmMzZjZjhkNjdlIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=b800cbc374c93574789b"
-                  frameborder="0"
-                  allowfullscreen="true"
-                ></iframe>
-                <p>
-                  Although there are more paid games in the top 100, we can see
-                  proportionally free games have more average positive reviews.
-                  This shows that paid games do not always provide more
-                  meaningful positive outcomes than if it were free. A possible
-                  reasoning for this is players will be more inclined to leave a
-                  positive review since they got game content without having to
-                  buy anything.
-                </p>
+                <p></p>
               </div>
             </div>
           </section>
           <section>
             <h2>Conclusion</h2>
-            <p>
-              There is not one single factor that makes a game top the Steam
-              charts for years. The amount of playtime a player can get out of a
-              game has a good influence on the games reviews. Additionally, the
-              game being free vs. paid has a great effect on reviews as well.
-              Lastly, the game type is a driving factor into how many hours
-              players spend in the game. Competitive games turns players into
-              spending more hours in game, which then inclines them to leave
-              more positive reviews. Story games on the other hand, look to
-              provide great game content which inclines players to leave more
-              positive reviews.
-            </p>
-            <p>
-              An interesting trend I saw with the different graphs were the two
-              consistent outliers, Dota 2 and Counter-Strike: Global Offensive.
-              These two games were both created by Valve (<i>who owns Steam</i>)
-              so there potentially could be another reasoning for why these top
-              the charts aside from their content or game type.
-            </p>
+            <p></p>
           </section>
           <section>
             <h2>Reflection</h2>
-            <p>
-              There is a lot that goes into making a great game and have it top
-              the Steam charts for years. Through this research, I hoped to have
-              given more insight on why these games do. For further work on this
-              analysis, I would like to find another way of retrieving this
-              similar data and compare it to mine to ensure consistency across
-              all fields. Additionally, I would like to look more into different
-              fields within these games such as their game type (genre) and
-              release date.
-            </p>
+            <p></p>
           </section>
         </div>
       </div>
