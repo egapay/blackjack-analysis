@@ -3,7 +3,7 @@ import ast
 import ast
 
 if __name__ == "__main__":
-    df = pd.read_csv("./blackjack_simulator.csv", nrows=1000)
+    df = pd.read_csv("./blackjack_simulator.csv", nrows=5000000)
 
     # filter_columns = ['dealer_up', 'initial_hand', 'dealer_final', 'dealer_final_value', 'player_final', 'player_final_value', 'actions_taken', 'win']
     round_table = ['win']
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     player_start_df.loc[:, 'initial_hand'] = player_start_df['initial_hand'].apply(ast.literal_eval)
     player_start_df.loc[:, 'initial_hand'] = player_start_df['initial_hand'].astype(str).str.replace('[', '{').str.replace(']', '}')
 
-    round_df.to_excel("./round.xlsx", index=True)
-    dealer_df.to_excel("./dealer.xlsx", index=True)
-    player_df.to_excel("./player.xlsx", index=True)
-    player_start_df.to_excel("./player_start.xlsx", index=True)
+    round_df.to_csv("../csv/round.csv", index=True)
+    dealer_df.to_csv("../csv/dealer.csv", index=True)
+    player_df.to_csv("../csv/player.csv", index=True)
+    player_start_df.to_csv("../csv/player_start.csv", index=True)
