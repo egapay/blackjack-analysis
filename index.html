@@ -29,13 +29,36 @@
         <div class="content-section">
           <section>
             <h2>Overview</h2>
-            <p>In this project, I will be doing an analysis of</p>
+            <p>
+              In this project, I will be doing an analysis of 5 million
+              simulated hands of Blackjack. I will go over my process for
+              transforming and loading the data as well as share my findings
+              from these games.
+            </p>
           </section>
           <section>
             <h2>Goal</h2>
-            <p>My goal is to</p>
+            <p>
+              My goal is to have a deeper understanding of Blackjack strategies,
+              odds, and outcomes. By exploring these statisitics, I will be able
+              to make a determination on which values are good/bad for the
+              player/dealer. I will be exploring these questions:
+            </p>
             <ul>
-              <li>Question 1</li>
+              <li>
+                Which dealer's face up card has the greatest winning percentage?
+              </li>
+              <li>
+                Which player's starting hand has the greatest winning
+                percentage?
+              </li>
+              <li>
+                Which player's ending total has the greatest winning percentage?
+              </li>
+              <li>
+                What kind of win/loss ratio can we expect from a player who uses
+                basic strategy?
+              </li>
             </ul>
           </section>
           <section>
@@ -43,9 +66,8 @@
             <ul>
               <li>Python / Pandas (<i>Data Transformation</i>)</li>
               <li>
-                <a href="https://dbdiagram.io/">dbdiagram.io</a> (<i
-                  >Database Modeling</i
-                >)
+                <a href="https://dbdiagram.io/" target="_blank">dbdiagram.io</a>
+                (<i>Data Modeling / Database Design</i>)
               </li>
               <li>Excel (<i>Data Storage</i>)</li>
               <li>PostgreSQL (<i>Data Storage</i>)</li>
@@ -53,12 +75,203 @@
             </ul>
           </section>
           <section>
-            <h2>Extraction</h2>
-            <p></p>
+            <h2>Dataset</h2>
+            <p>
+              Originally, I wanted to create my own Python script to simulate a
+              number of hands of Blackjack. However, as I am focusing more on
+              the analysis aspect, I opted to instead explore Kaggle for
+              accessible datasets. I found a dataset that contained 50 million
+              simulated hands of Blackjack. Here is the link to the dataset:
+              <a
+                href="https://www.kaggle.com/datasets/dennisho/blackjack-hands/data"
+                target="_blank"
+                >50 Million Hands of Blackjack</a
+              >. There are several columns in the dataset, but I focused only on
+              these:
+            </p>
+            <ul>
+              <li>
+                dealer_up (<i><b>int</b> - dealer's initial face up card</i>)
+              </li>
+              <li>
+                initial_hand (<i
+                  ><b>list[ ]</b> - the player's initial two cards</i
+                >)
+              </li>
+              <li>
+                dealer_final (<i><b>list[ ]</b> - the dealer's final cards</i>)
+              </li>
+              <li>
+                dealer_final_value (<i
+                  ><b>int</b> - the dealer's total ending value</i
+                >)
+              </li>
+              <li>
+                player_final (<i><b>list[ ][ ]</b> - the player's final cards</i
+                >)
+              </li>
+              <li>
+                player_final_value (<i
+                  ><b>int</b> - the player's total ending value</i
+                >)
+              </li>
+              <li>
+                actions_taken (<i
+                  ><b>list[ ][ ]</b> - the action's taken by the player, more
+                  info on the Kaggle page</i
+                >)
+              </li>
+              <li>
+                win (<i
+                  ><b>float</b> - the multiplier of the player's initial bet</i
+                >)
+              </li>
+            </ul>
+            <p>
+              This data was simulated using the most common set of rules in Las
+              Vegas casinos. More information can be found on the Kaggle page.
+            </p>
+          </section>
+          <section>
+            <h2>Data Modeling / Database Design</h2>
+            <p>
+              I planned on loading the .csv file straight into PowerBI, but I
+              had worries concerning how large this dataset was. The .csv was
+              almost 4GB large containing over 50 million rows. I decided to go
+              with a more scalable approach and loaded the data into a
+              PostgreSQL database, a common industry choice. Utilizing
+              PostgreSQL's <b>/COPY</b> command to load the data into the
+              database was the most efficient way to do this. It was much faster
+              than using Python to write to the database.
+            </p>
+            <p>The data in the .csv looked like this:</p>
+            <table class="full-table">
+              <tr>
+                <th>dealer_up</th>
+                <th>initial_hand</th>
+                <th>dealer_final</th>
+                <th>dealer_final_value</th>
+                <th>player_final</th>
+                <th>player_final_value</th>
+                <th>actions_taken</th>
+                <th>win</th>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>[3, 3]</td>
+                <td>[6, 10, 10]</td>
+                <td>26</td>
+                <td>[[3, 2, 10], [3, 4, 5]]</td>
+                <td>[15, 12]</td>
+                <td>[['P', 'H', 'S'], ['H', 'S']]</td>
+                <td>2</td>
+              </tr>
+            </table>
+            <p>
+              The more I started to plan how my schema would look, the more I
+              realized it was not going to be as simple as writing each row to
+              the database. The main issue was the nested lists in the
+              player_final and actions_taken columns. It would be difficult for
+              analyze the data in this format in PowerBI, so I had to go ahead
+              and normalize my database. I split the data into 4 tables:
+              <b>dealer</b>, <b>player</b>, <b>player_start</b>, and
+              <b>round</b>.
+            </p>
+            <p>
+              Using dbdiagram.io, I was able to create a quick database schema
+              diagram to plan out my tables. Creating the PostgreSQL database
+              can be found within a
+              <a
+                href="https://github.com/egapay/blackjack-analysis/blob/main/src/db/createDB.sql"
+                target="_blank"
+                >SQL file</a
+              >
+              in the project's repository.
+            </p>
+            <img src="./media/db-schema.png" alt="Blackjack Schema" />
+            <p>
+              The information is now easily usable in PowerBI with the sample
+              data looking like this in the database:
+            </p>
+            <div>
+              <h3>round</h3>
+              <table>
+                <tr>
+                  <th>round_id</th>
+                  <th>win</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>2</td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <h3>dealer</h3>
+              <table>
+                <tr>
+                  <th>round_id</th>
+                  <th>dealer_up</th>
+                  <th>dealer_final</th>
+                  <th>dealer_final_value</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>6</td>
+                  <td>[6, 10, 10]</td>
+                  <td>26</td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <h3>player</h3>
+              <table>
+                <tr>
+                  <th>round_id</th>
+                  <th>hand_id</th>
+                  <th>player_final</th>
+                  <th>player_final_value</th>
+                  <th>actions_taken</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>[3, 2, 10]</td>
+                  <td>15</td>
+                  <td>['P', 'H', 'S']</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>2</td>
+                  <td>[3, 4, 5]</td>
+                  <td>12</td>
+                  <td>['H', 'S']</td>
+                </tr>
+              </table>
+            </div>
+            <div>
+              <h3>player_start</h3>
+              <table>
+                <tr>
+                  <th>round_id</th>
+                  <th>initial_hand</th>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>[3, 3]</td>
+                </tr>
+              </table>
+            </div>
+            <p>
+              The database has been structured to be easily loaded into PowerBI
+              for analysis. Now the data from the original .csv must be
+              transformed in order to be able to load it properly in the
+              PostgreSQL database.
+            </p>
           </section>
           <section>
             <h2>Transformation</h2>
-            <p>I will use ...</p>
+            <p>I will use Python / Pandas in order to transform the data.</p>
 
             <div class="code-explain">
               <p>Explaining code...</p>

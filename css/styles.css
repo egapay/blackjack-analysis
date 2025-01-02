@@ -105,3 +105,22 @@ iframe {
   margin: 2rem 0;
   padding: 1rem 0;
 }
+
+.full-table {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
