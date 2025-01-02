@@ -271,15 +271,19 @@
           </section>
           <section>
             <h2>Transformation</h2>
-            <p>I will use Python / Pandas in order to transform the data.</p>
+            <p>
+              I will use Python / Pandas in order to transform the data. The
+              original .csv will be split up into four different .csv files,
+              each one being related to a respective table. The script can be
+              found in the project's repository. The only thing to note within
+              the script is changing the "[" and "]" to "{" and "}"
+              respectively. This is because PostgreSQL takes in arrays in the
+              form of "{" and "}".
+            </p>
 
             <div class="code-explain">
-              <p>Explaining code...</p>
-              <pre><code class="python"
-                  >
-apiEndpoint = "https://steamspy.com/api.php?request=top100forever"
-response = requests.get(apiEndpoint)
-data = response.json()</code>
+              <p>Here is an example from the script:</p>
+              <pre><code class="python">dealer_df.loc[:, 'dealer_final'] = dealer_df['dealer_final'].astype(str).str.replace('[', '{').str.replace(']', '}')</code>
               </pre>
             </div>
           </section>
@@ -291,12 +295,60 @@ data = response.json()</code>
             </p>
             <div class="question-section">
               <div>
-                <h3>Question</h3>
+                <h3>
+                  Which dealer's face up card has the greatest winning
+                  percentage?
+                </h3>
                 <iframe
-                  title="gameData"
+                  title="blackjack_analysis-v2"
                   width="600"
                   height="373.5"
-                  src="https://app.powerbi.com/view?r=eyJrIjoiYTlmNWE3NjgtZjY3Ni00MzU2LWIzYjQtOWFmMzZjZjhkNjdlIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=c28ab8c09606d6558a3c"
+                  src="https://app.powerbi.com/view?r=eyJrIjoiZGQ2ZTI0MDEtNmZkNi00YzhmLTlmYzEtZDJmM2M2Y2IwYjhjIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=a6a48b7f2c5aeae07490"
+                  frameborder="0"
+                  allowfullscreen="true"
+                ></iframe>
+                <p></p>
+              </div>
+              <div>
+                <h3>
+                  Which player's starting hand has the greatest winning
+                  percentage?
+                </h3>
+                <iframe
+                  title="blackjack_analysis-v2"
+                  width="600"
+                  height="373.5"
+                  src="https://app.powerbi.com/view?r=eyJrIjoiZGQ2ZTI0MDEtNmZkNi00YzhmLTlmYzEtZDJmM2M2Y2IwYjhjIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=8db6b9601bc16b60dcb7"
+                  frameborder="0"
+                  allowfullscreen="true"
+                ></iframe>
+                <p></p>
+              </div>
+              <div>
+                <h3>
+                  Which player's ending total has the greatest winning
+                  percentage?
+                </h3>
+                <iframe
+                  title="blackjack_analysis-v2"
+                  width="600"
+                  height="373.5"
+                  src="https://app.powerbi.com/view?r=eyJrIjoiZGQ2ZTI0MDEtNmZkNi00YzhmLTlmYzEtZDJmM2M2Y2IwYjhjIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=04874da7968b32dbdab7"
+                  frameborder="0"
+                  allowfullscreen="true"
+                ></iframe>
+                <p></p>
+              </div>
+              <div>
+                <h3>
+                  What kind of win/loss ratio can we expect from a player who
+                  uses basic strategy?
+                </h3>
+                <iframe
+                  title="blackjack_analysis-v2"
+                  width="600"
+                  height="373.5"
+                  src="https://app.powerbi.com/view?r=eyJrIjoiZGQ2ZTI0MDEtNmZkNi00YzhmLTlmYzEtZDJmM2M2Y2IwYjhjIiwidCI6IjhhODUwYTk1LTIwODItNDk3Yi05NjBiLTE1YmZjZDUzZDM2YyIsImMiOjJ9&pageName=a0a7e46dddbe39babec4"
                   frameborder="0"
                   allowfullscreen="true"
                 ></iframe>
