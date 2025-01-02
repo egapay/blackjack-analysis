@@ -18,7 +18,7 @@
     <header>
       <div class="header-left">Ethan Gapay</div>
       <div class="header-right">
-        <a href="https://egapay.github.io/" target="_blank" id="personal-link"
+        <a href="https://egapay.github.io/" id="personal-link"
           >Back to Portfolio</a
         >
       </div>
@@ -30,16 +30,15 @@
           <section>
             <h2>Overview</h2>
             <p>
-              In this project, I will be doing an analysis of 5 million
-              simulated hands of Blackjack. I will go over my process for
-              transforming and loading the data as well as share my findings
-              from these games.
+              In this project, I will be analyzing 5 million simulated hands of
+              Blackjack. I will go over my process for transforming and loading
+              the data, as well as share my findings from these games.
             </p>
           </section>
           <section>
             <h2>Goal</h2>
             <p>
-              My goal is to have a deeper understanding of Blackjack strategies,
+              My goal is to gain a deeper understanding of Blackjack strategies,
               odds, and outcomes. By exploring these statisitics, I will be able
               to make a determination on which values are good/bad for the
               player/dealer. I will be exploring these questions:
@@ -60,6 +59,9 @@
                 basic strategy?
               </li>
             </ul>
+            <p>
+              <a href="#analysis"><i>Skip to findings</i></a>
+            </p>
           </section>
           <section>
             <h2>Tech Stack</h2>
@@ -171,7 +173,7 @@
               The more I started to plan how my schema would look, the more I
               realized it was not going to be as simple as writing each row to
               the database. The main issue was the nested lists in the
-              player_final and actions_taken columns. It would be difficult for
+              player_final and actions_taken columns. It would be difficult to
               analyze the data in this format in PowerBI, so I had to go ahead
               and normalize my database. I split the data into 4 tables:
               <b>dealer</b>, <b>player</b>, <b>player_start</b>, and
@@ -287,7 +289,7 @@
               </pre>
             </div>
           </section>
-          <section>
+          <section id="analysis">
             <h2>Analysis</h2>
             <p>
               In this section, I will be answering the questions asked above by
@@ -307,7 +309,17 @@
                   frameborder="0"
                   allowfullscreen="true"
                 ></iframe>
-                <p></p>
+                <p>
+                  According to the chart above, players going against a dealer's
+                  numbers 3-6 have more than a 50% chance of winning. These
+                  low-value cards are the most favorable for the player as the
+                  chances of the dealer busting are higher. Since the dealer
+                  must hit if they have 16 or less, showing a 6 has the highest
+                  winning percentage. Assuming the dealer has a 10 face-down,
+                  them hitting and getting a card 6-10 will bust them. Players
+                  seeing one of these face-up cards should be more aggressive in
+                  their play knowing these odds are in their favor.
+                </p>
               </div>
               <div>
                 <h3>
@@ -322,7 +334,31 @@
                   frameborder="0"
                   allowfullscreen="true"
                 ></iframe>
-                <p></p>
+                <p>
+                  Players should not only take a look at their hand, but also
+                  consider their hand in regards to the dealer. A combination of
+                  the information shown in the previous chart as well as the
+                  information directly above should further help shift the odds
+                  in the player's favor. The chart above shows that players with
+                  hands of high value, (e.g., 10/A, 10/10, 10/9) have the
+                  highest winning percentage. These hands are the most favorable
+                  for the player as they are close to 21. It then shifts to
+                  hands that have a high chance of being close to 21 after a
+                  hit: 11, 10, AA (<i>after being split</i>), and 9. Using basic
+                  strategy, players must assume the next card they hit will be a
+                  10, this is why these hands are the most favorable. Players
+                  must play aggressively with these hands as the odds are in
+                  their favor.
+                </p>
+                <p>
+                  <b><i>Why is 21 not 100%?</i></b>
+                </p>
+                <p>
+                  Using the most commonly played Las Vegas rule set, players who
+                  get blackjack off of their starting hand has to wait until the
+                  dealer confirms they do not have blackjack as well. If they
+                  do, it is a push, indicating no win or loss.
+                </p>
               </div>
               <div>
                 <h3>
@@ -337,7 +373,19 @@
                   frameborder="0"
                   allowfullscreen="true"
                 ></iframe>
-                <p></p>
+                <p>
+                  Similar to the previous chart, we can see that players ending
+                  on 21-19 has the highest chance to win with 18 also being a
+                  valuable hand. We can see here that although 17 is a high
+                  number, it is beaten by values 12-14. This is because a hard
+                  17 has a high chance of busting if the player hits. Players
+                  with 12-14 have a higher chance of hitting and getting a card
+                  that will not bust them. Players can hit with only cards value
+                  8 or higher causing them to bust. Players with 17 should play
+                  more conservatively as the odds are not in their favor. With
+                  values 12-14, players can play more aggressively as the odds
+                  are in their favor.
+                </p>
               </div>
               <div>
                 <h3>
@@ -352,17 +400,47 @@
                   frameborder="0"
                   allowfullscreen="true"
                 ></iframe>
-                <p></p>
+                <p>
+                  Even after reviewing all the best strategies, numbers, and
+                  hands to play, the chart above shows the unfortunate outcomes
+                  a player will be faced with. Out of 5 million hands, ~50% of
+                  the games played will result in a loss, ~42% of games will
+                  result in a win, and ~8% will result in a tie.
+                </p>
               </div>
             </div>
           </section>
           <section>
             <h2>Conclusion</h2>
-            <p></p>
+            <p>
+              By players using basic strategy, we can see the odds of winning
+              are increased. Players should play aggressively when their initial
+              cards total to 19-21 and when the dealer is showing low-value
+              cards like 3-6. After doing a deep dive into this topic, we can
+              see that players who decide to play should be aware that the odds
+              are already not in their favor, no matter how well they play. The
+              house always wins in the end with a 50% win rate. Discouraging as
+              this may be, gambling should be done for fun and players should
+              enjoy to play the game regardless of the outcome. Some players may
+              even beat the odds and get lucky!
+            </p>
           </section>
           <section>
             <h2>Reflection</h2>
-            <p></p>
+            <p>
+              I chose this topic as it was something I had an interest in. The
+              biggest areas of work that I had to focus on during this project
+              was the data modeling and database design. A database was required
+              in order for this project to be scalable and efficient so I spent
+              a lot of time making sure my schema was correct and efficient.
+              This project helped me work on those skills as well as giving me
+              more practice using Pandas and PowerBI. If I were to restart this
+              project, I would definitely look into creating my own blackjack
+              simulator in order to create the correct dataset I need right
+              away. I am looking to continue polishing this project diving
+              deeper into the dataset and answering more in-depth technical
+              blackjack questions.
+            </p>
           </section>
         </div>
       </div>
