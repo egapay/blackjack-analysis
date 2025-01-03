@@ -88,8 +88,7 @@
                 href="https://www.kaggle.com/datasets/dennisho/blackjack-hands/data"
                 target="_blank"
                 >50 Million Hands of Blackjack</a
-              >. There are several columns in the dataset, but I focused only on
-              these:
+              >. There were several columns, but I focused only on these:
             </p>
             <ul>
               <li>
@@ -119,8 +118,7 @@
               </li>
               <li>
                 actions_taken (<i
-                  ><b>list[ ][ ]</b> - the action's taken by the player, more
-                  info on the Kaggle page</i
+                  ><b>list[ ][ ]</b> - the action's taken by the player</i
                 >)
               </li>
               <li>
@@ -143,8 +141,8 @@
               with a more scalable approach and loaded the data into a
               PostgreSQL database, a common industry choice. Utilizing
               PostgreSQL's <b>/COPY</b> command to load the data into the
-              database was the most efficient way to do this. It was much faster
-              than using Python to write to the database.
+              database was the most efficient way to do this. The was a much
+              faster approach rather than using Python to write to the database.
             </p>
             <p>The data in the .csv looked like this:</p>
             <table class="full-table">
@@ -174,8 +172,8 @@
               realized it was not going to be as simple as writing each row to
               the database. The main issue was the nested lists in the
               player_final and actions_taken columns. It would be difficult to
-              analyze the data in this format in PowerBI, so I had to go ahead
-              and normalize my database. I split the data into 4 tables:
+              analyze the data in PowerBI, so I had to normalize my database. I
+              split the data into 4 tables:
               <b>dealer</b>, <b>player</b>, <b>player_start</b>, and
               <b>round</b>.
             </p>
@@ -192,8 +190,8 @@
             </p>
             <img src="./media/db-schema.png" alt="Blackjack Schema" />
             <p>
-              The information is now easily usable in PowerBI with the sample
-              data looking like this in the database:
+              The information is now usable in PowerBI with the sample data
+              looking like this in the database:
             </p>
             <div>
               <h3>round</h3>
@@ -265,10 +263,8 @@
               </table>
             </div>
             <p>
-              The database has been structured to be easily loaded into PowerBI
-              for analysis. Now the data from the original .csv must be
-              transformed in order to be able to load it properly in the
-              PostgreSQL database.
+              Now the data from the original .csv must be transformed in order
+              to be able to load it properly in the PostgreSQL database.
             </p>
           </section>
           <section>
@@ -276,9 +272,14 @@
             <p>
               I will use Python / Pandas in order to transform the data. The
               original .csv will be split up into four different .csv files,
-              each one being related to a respective table. The script can be
-              found in the project's repository. The only thing to note within
-              the script is changing the "[" and "]" to "{" and "}"
+              each one being related to their respective table. The
+              <a
+                href="https://github.com/egapay/blackjack-analysis/blob/main/src/py/clean_csv.py"
+                target="_blank"
+                >script</a
+              >
+              can be found in the project's repository. The only thing to note
+              within the script is changing the "[" and "]" to "{" and "}"
               respectively. This is because PostgreSQL takes in arrays in the
               form of "{" and "}".
             </p>
@@ -311,14 +312,15 @@
                 ></iframe>
                 <p>
                   According to the chart above, players going against a dealer's
-                  numbers 3-6 have more than a 50% chance of winning. These
+                  cards 3-6 have more than a 50% chance of winning. These
                   low-value cards are the most favorable for the player as the
                   chances of the dealer busting are higher. Since the dealer
                   must hit if they have 16 or less, showing a 6 has the highest
                   winning percentage. Assuming the dealer has a 10 face-down,
-                  them hitting and getting a card 6-10 will bust them. Players
-                  seeing one of these face-up cards should be more aggressive in
-                  their play knowing these odds are in their favor.
+                  them hitting and getting a card 6 or higher will bust them.
+                  Players seeing one of these face-up cards should be more
+                  aggressive in their play knowing these odds are in their
+                  favor.
                 </p>
               </div>
               <div>
@@ -346,9 +348,9 @@
                   hands that have a high chance of being close to 21 after a
                   hit: 11, 10, AA (<i>after being split</i>), and 9. Using basic
                   strategy, players must assume the next card they hit will be a
-                  10, this is why these hands are the most favorable. Players
-                  must play aggressively with these hands as the odds are in
-                  their favor.
+                  10, explaining why these hands are the most favorable. These
+                  hands must be played aggressively the odds are in the player's
+                  favor.
                 </p>
                 <p>
                   <b><i>Why is 21 not 100%?</i></b>
@@ -375,16 +377,15 @@
                 ></iframe>
                 <p>
                   Similar to the previous chart, we can see that players ending
-                  on 21-19 has the highest chance to win with 18 also being a
-                  valuable hand. We can see here that although 17 is a high
+                  on 19-21 have the highest chance to win with 18 also being a
+                  valuable total. We can see here that although 17 is a high
                   number, it is beaten by values 12-14. This is because a hard
                   17 has a high chance of busting if the player hits. Players
                   with 12-14 have a higher chance of hitting and getting a card
-                  that will not bust them. Players can hit with only cards value
-                  8 or higher causing them to bust. Players with 17 should play
-                  more conservatively as the odds are not in their favor. With
-                  values 12-14, players can play more aggressively as the odds
-                  are in their favor.
+                  that will not bust them. Only cards 8 and higher will make the
+                  player bust. Players with 17 should play more conservatively
+                  as the odds are not in their favor. With values 12-14, players
+                  can play more aggressively as the odds are in their favor.
                 </p>
               </div>
               <div>
@@ -430,16 +431,16 @@
             <p>
               I chose this topic as it was something I had an interest in. The
               biggest areas of work that I had to focus on during this project
-              was the data modeling and database design. A database was required
-              in order for this project to be scalable and efficient so I spent
-              a lot of time making sure my schema was correct and efficient.
-              This project helped me work on those skills as well as giving me
-              more practice using Pandas and PowerBI. If I were to restart this
-              project, I would definitely look into creating my own blackjack
-              simulator in order to create the correct dataset I need right
-              away. I am looking to continue polishing this project diving
-              deeper into the dataset and answering more in-depth technical
-              blackjack questions.
+              were the data modeling and database design. A database was
+              required in order for this project to be scalable and efficient so
+              I spent a lot of time making sure my schema was correct. This
+              project helped me work on those database skills as well as giving
+              me more practice using Pandas and PowerBI. If I were to restart
+              this project, I would definitely look into creating my own
+              blackjack simulator in order to create the correct dataset I need
+              right away. I look forward to polishing this project even further,
+              diving deeper into the dataset and answering more in-depth
+              technical blackjack questions.
             </p>
           </section>
         </div>
